@@ -20,9 +20,12 @@ class Flight(db.Model):
     departure_time = db.Column(db.String(5), nullable=False)
     arrival_time = db.Column(db.String(5), nullable=False)
     seats_left = db.Column(db.Integer, nullable=False)
+    flight_number = db.Column(db.String(10), nullable=False)
 
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'), nullable=False)
     passenger_name = db.Column(db.String(100), nullable=False)
-    reference = db.Column(db.String(36), default=lambda: str(uuid.uuid4()), unique=True)
+    reference = db.Column(db.String(8), nullable=False, unique=True)
+    flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'))
+    flight = db.relationship('Flight', backref='bookings')

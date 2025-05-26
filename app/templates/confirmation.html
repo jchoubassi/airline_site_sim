@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+  <div class="card p-4">
+    <h2>Booking Confirmed!</h2>
+    <p><strong>Name:</strong> {{ booking.passenger_name }}</p>
+    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
+    <p><strong>Date:</strong> {{ flight.date }}</p>
+    <p><strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}</p>
+    <p><strong>Booking Reference:</strong> {{ booking.reference }}</p>
+  </div>
+{% endblock %}

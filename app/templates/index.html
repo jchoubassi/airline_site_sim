@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dairy Flat Airways</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <div class="container text-center mt-5">
-    <h1>Welcome to Dairy Flat Airways</h1>
-    <p class="lead">Book your luxury flights from Dairy Flat Airport</p>
+{% extends 'layout.html' %}
+
+{% block title %}Welcome to Dairy Flat Airways{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center text-white d-flex flex-column justify-content-center align-items-center"style="height: 80vh; background-image: url('{{ url_for('static', filename='images/sky.jpg') }}'); background-size: cover; background-position: center;">
+  <div class="bg-dark bg-opacity-50 p-4 rounded">
+    <h1 class="display-4 fw-bold">Fly Dairy Flat</h1>
+    <p class="lead">Private luxury flights from NZ's north to destinations near and far.</p>
+    <a href="{{ url_for('main.search') }}" class="btn btn-warning btn-lg me-3">Book a Flight</a>
+    <a href="{{ url_for('main.cancel_booking') }}" class="btn btn-outline-light btn-lg">Cancel Booking</a>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

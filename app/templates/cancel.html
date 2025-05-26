@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+  <h2>Cancel a Booking</h2>
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label for="reference" class="form-label">Booking Reference</label>
+      <input type="text" class="form-control" name="reference" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Cancel Booking</button>
+  </form>
+{% endblock %}

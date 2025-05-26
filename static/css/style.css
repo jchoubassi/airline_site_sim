@@ -1,0 +1,66 @@
+body {
+  background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+header.header {
+  background-color: #0077b6;
+  color: white;
+  padding: 1.5rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #0077b6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #005f91;
+}
+
+.btn-danger {
+  background-color: #d62828;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bb1d1d;
+}
+
+.table th {
+  background-color: #023e8a;
+  color: white;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #dbeeff;
+}
+
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.hero-section h1, .hero-section p {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}

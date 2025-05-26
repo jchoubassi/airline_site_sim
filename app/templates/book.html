@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Book Flight{% endblock %}
+
+{% block content %}
+  <h2>Book Flight {{ flight.flight_number }}</h2>
+  <p><strong>Date:</strong> {{ flight.date }}</p>
+  <p><strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}</p>
+
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Passenger Name</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+  </form>
+{% endblock %}
