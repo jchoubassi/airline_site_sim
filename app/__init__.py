@@ -24,4 +24,7 @@ def create_app():
         from .models import Aircraft, Route, Flight, Booking
         db.create_all()
 
+    #secret key for session
+    app.secret_key = os.environ.get("SECRET_KEY", "dev_key_123")
+
     return app
