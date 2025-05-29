@@ -25,7 +25,10 @@ class Flight(db.Model):
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'), nullable=False)
-    passenger_name = db.Column(db.String(100), nullable=False)
-    reference = db.Column(db.String(8), nullable=False, unique=True)
-    flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'))
-    flight = db.relationship('Flight', backref='bookings')
+    salutation = db.Column(db.String(10))
+    first_name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
+    email = db.Column(db.String(120))
+    reference = db.Column(db.String(10), unique=True, nullable=False)
+    def __repr__(self):
+        return f"<Booking {self.first_name} {self.last_name} - {self.reference}>" #for csv

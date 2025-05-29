@@ -3,12 +3,18 @@
 {% block title %}Booking Cancelled{% endblock %}
 
 {% block content %}
-  <div class="card p-4">
-    <h2 class="text-danger">Booking Cancelled</h2>
-    <p><strong>Name:</strong> {{ booking.passenger_name }}</p>
-    <p><strong>Flight Number:</strong> {{ booking.flight.flight_number }}</p>
-    <p><strong>Date:</strong> {{ booking.flight.date }}</p>
-    <p><strong>Booking Reference:</strong> {{ booking.reference }}</p>
-    <p class="mt-3">We're sorry to see you go. You may <a href="{{ url_for('main.search') }}">book a new flight</a> at any time.</p>
+<div class="text-center mt-5">
+  <h2 class="text-danger fw-bold">Booking Cancelled</h2>
+  <p class="lead">We're sorry to see you go. The following booking has been cancelled:</p>
+
+  <div class="card mx-auto mt-4" style="max-width: 500px;">
+    <div class="card-body">
+      <p><strong>Name:</strong> {{ booking.salutation }} {{ booking.first_name }} {{ booking.last_name }}</p>
+      <p><strong>Email:</strong> {{ booking.email }}</p>
+      <p><strong>Booking Reference:</strong> {{ booking.reference }}</p>
+    </div>
   </div>
+
+  <a href="{{ url_for('main.index') }}" class="btn btn-primary mt-4">Back to Home</a>
+</div>
 {% endblock %}

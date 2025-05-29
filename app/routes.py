@@ -1,18 +1,15 @@
-from flask import Blueprint, render_template, request #for rendering templates
-from .models import Route, Flight #for routes and flights
-from .models import db #for db
-from flask import redirect, url_for, flash #for flash messages
-from .models import Booking #booking model
-import uuid #gen booking id
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from .models import Route, Flight, Booking, db
+import uuid
 
 main = Blueprint('main', __name__)
 
-#home page
+# Home page
 @main.route('/')
 def index():
     return render_template('index.html')
 
-#search page
+# Search page
 @main.route('/search', methods=['GET', 'POST'])
 def search():
     routes = Route.query.all()
@@ -28,31 +25,42 @@ def search():
             Route.destination == destination,
             Flight.date == date
         ).all()
+
     return render_template('search.html', routes=routes, flights=flights)
 
-#book flight
+# Book flight
 @main.route('/book/<int:flight_id>', methods=['GET', 'POST'])
 def book_flight(flight_id):
     flight = Flight.query.get_or_404(flight_id)
 
-    # Check if the flight has available seats
     if request.method == 'POST':
-        name = request.form.get('name')
-        
-        if flight.seats_left > 0: 
-            reference = str(uuid.uuid4())[:8] #ID generated
-            booking = Booking(flight_id = flight.id, passenger_name = name, reference = reference)
+        salutation = request.form.get('salutation')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+
+        if flight.seats_left > 0:
+            reference = str(uuid.uuid4())[:8]
+            booking = Booking(
+                flight_id=flight.id,
+                salutation=salutation,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                reference=reference
+            )
             flight.seats_left -= 1
 
             db.session.add(booking)
             db.session.commit()
-            return render_template('confirmation.html', booking=booking, flight=flight) # confirmation page
+            return render_template('confirmation.html', booking=booking, flight=flight)
         else:
             flash('No seats left for this flight.')
             return redirect(url_for('main.search'))
     return render_template('book.html', flight=flight)
 
-#cancel
+
+# Cancel booking
 @main.route('/cancel', methods=['GET', 'POST'])
 def cancel_booking():
     if request.method == 'POST':
@@ -64,8 +72,9 @@ def cancel_booking():
             flight.seats_left += 1
             db.session.delete(booking)
             db.session.commit()
-            return render_template('cancelled.html', booking=booking) # confirmation page
+            return render_template('cancelled.html', booking=booking)
         else:
             flash('Booking not found.')
             return redirect(url_for('main.cancel_booking'))
+
     return render_template('cancel.html')

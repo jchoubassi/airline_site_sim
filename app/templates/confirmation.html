@@ -3,12 +3,21 @@
 {% block title %}Booking Confirmed{% endblock %}
 
 {% block content %}
-  <div class="card p-4">
-    <h2>Booking Confirmed!</h2>
-    <p><strong>Name:</strong> {{ booking.passenger_name }}</p>
-    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
-    <p><strong>Date:</strong> {{ flight.date }}</p>
-    <p><strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}</p>
-    <p><strong>Booking Reference:</strong> {{ booking.reference }}</p>
+<div class="container mt-5 text-center">
+  <div class="card p-4 shadow">
+    <h2 class="mb-3 text-success">🎉 Booking Confirmed!</h2>
+
+    <p><strong>Name:</strong> {{ booking.salutation }} {{ booking.first_name }} {{ booking.last_name }}</p>
+    <p><strong>Email:</strong> {{ booking.email }}</p>
+
+    <p><strong>Flight Number:</strong> {{ flight.flight_number }}<br>
+    <strong>Date:</strong> {{ flight.date }}<br>
+    <strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}</p>
+
+    <p class="fw-bold">Booking Reference: <code>{{ booking.reference }}</code></p>
+
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary mt-3">Back to Home</a>
   </div>
+</div>
 {% endblock %}
+

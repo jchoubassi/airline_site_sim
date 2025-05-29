@@ -3,15 +3,41 @@
 {% block title %}Book Flight{% endblock %}
 
 {% block content %}
-  <h2>Book Flight {{ flight.flight_number }}</h2>
-  <p><strong>Date:</strong> {{ flight.date }}</p>
-  <p><strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}</p>
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h2 class="mb-4">Book Flight {{ flight.flight_number }}</h2>
+    <p><strong>Date:</strong> {{ flight.date }}<br>
+    <strong>Departure:</strong> {{ flight.departure_time }} | <strong>Arrival:</strong> {{ flight.arrival_time }}<br>
+    <strong>Seats Left:</strong> {{ flight.seats_left }}</p>
 
-  <form method="post" class="mt-4">
-    <div class="mb-3">
-      <label for="name" class="form-label">Passenger Name</label>
-      <input type="text" class="form-control" name="name" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Confirm Booking</button>
-  </form>
+    <form method="POST">
+      <div class="row">
+        <div class="mb-3 col-md-3">
+          <label for="salutation" class="form-label">Salutation</label>
+          <select class="form-select" name="salutation" required>
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Dr">Dr</option>
+          </select>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="mb-3 col-md-5">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" name="last_name" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Confirm Booking</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
